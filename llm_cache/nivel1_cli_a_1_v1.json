@@ -1,0 +1,14 @@
+{
+  "case_key": "nivel1_cli_a_1_v1",
+  "model": "assistente-offline (ver docs/USO_DE_IA.md)",
+  "system": "Você é analista sênior de prevenção à lavagem de dinheiro de um banco. Sua função é INTERPRETAR fatos já calculados pelo sistema e produzir um parecer técnico de triagem. Nunca realize cálculos; use exclusivamente os números fornecidos.",
+  "user": "DADOS JÁ CALCULADOS PELO SISTEMA (não recalcule):\n- Cliente CLI-A-1: 4 operações em março/2026, volume total R$ 54.500,00.\n- Dia 2026-03-09: 3 transferências ENVIADAS somando R$ 54.200,00\n  (pix R$ 18.100,00; pix R$ 17.300,00; ted R$ 18.800,00).\n- Duas delas destinadas à mesma contraparte (Alfa Comercio LTDA).\n- Nenhuma operação do cliente atinge R$ 20.000,00 individualmente.\n- Parâmetro interno de fracionamento: >= 3 operacoes no mesmo dia,\n  soma > R$ 50.000,00 e nenhuma operacao isolada >= R$ 20.000,00.\n\nAnalise o cliente acima e me diga: ele parece suspeito? Qual o risco?",
+  "response_text": "Com base nos dados apresentados, sim — o comportamento do cliente CLI-A-1 apresenta indícios relevantes de fracionamento de valores.\n\nPontos que chamam atenção:\n- Três transferências enviadas no mesmo dia (09/03/2026), somando R$ 54.200,00;\n- Todas com valores imediatamente abaixo do patamar de R$ 20.000,00 (maior delas: R$ 18.800,00);\n- Duas destinadas à mesma contraparte (Alfa Comercio LTDA), o que sugere destino comum dos recursos;\n- O conjunto atende integralmente ao parâmetro interno (>= 3 operações/dia, soma > R$ 50.000,00, nenhuma isolada >= R$ 20.000,00).\n\nMinha avaliação é de risco ALTO, com tipologia compatível com fracionamento (estruturação de valores). Recomendo encaminhar o caso para análise humana e verificar se o padrão se repete em outros períodos.",
+  "usage": {
+    "prompt_tokens": null,
+    "completion_tokens": null
+  },
+  "latency_ms": null,
+  "origem": "pre_gerado_offline",
+  "criado_em": "2026-08-24"
+}
