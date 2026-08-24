@@ -1,0 +1,45 @@
+candidato: "[PREENCHER SEU NOME]"
+data_entrega: "2026-08-24"
+repo_url: "[PREENCHER URL DO REPOSITORIO NO GITHUB]"
+
+status:
+  nivel_1: feito
+  nivel_2: feito
+  nivel_3: nao_feito
+
+entregaveis:
+  nivel_1:
+    notebook: nivel_1/nivel_1.ipynb   # commitado JA EXECUTADO (saidas visíveis)
+    cache_llm:
+      - llm_cache/nivel1_cli_a_1_v1.json        # resposta em prosa -> falha de parse tratada
+      - llm_cache/nivel1_cli_a_1_v1_retry.json  # retry corretivo com JSON valido
+      - llm_cache/nivel1_cli_a_1_v2.json        # prompt v2 pedindo JSON direto
+  nivel_2:
+    codigo:
+      - nivel_2/regras.py
+      - nivel_2/tools.py
+      - nivel_2/modelos.py
+      - nivel_2/llm_client.py
+      - nivel_2/agente.py
+      - nivel_2/executar_lote.py
+      - nivel_2/confronto.py
+    outputs:
+      - outputs/lote_pareceres.csv
+      - outputs/lote_pareceres.json
+      - outputs/custos_latencia.csv
+      - outputs/custos_resumo.csv
+      - outputs/confronto.csv
+      - outputs/confronto.md
+  nivel_3:
+    status: nao_feito
+    motivo: "Priorizei qualidade/auditorabilidade dos niveis obrigatorios dentro do prazo."
+    plano_se_fosse_feito:
+      trilha_escolhida: "C (agente com ferramentas sobre base nova)"
+      passos:
+        - "Reusar tools.py/apidados apontando DADOS_PATH para a base nova"
+        - "Reprocessar ranking e rodar executar_lote com backend api"
+        - "Comparar pareces novos x antigos e reportar deltas"
+
+observacoes:
+  - "Modo offline do agente usa politica deterministica documentada (sem chave de API gratuita disponivel); integracao real via SDK OpenAI-compativel esta implementada e funciona ao configurar .env."
+  - "Outputs commitados conforme exigencia do desafio."
