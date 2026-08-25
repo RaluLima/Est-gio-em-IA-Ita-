@@ -17,7 +17,7 @@ numa impl real seria taxa da data da operação.
 ### 3. Operações sem data ficam fora da Regra 1, mas não somem
 A Regra 1 agrupa por dia — sem data é impossível aplicar. As operações continuam
 na base para volume, mediana e Regra 2 (que não depende de data). No nível 1,
-OP-0006/OP-0017 seguem visíveis nas estatísticas do notebook.
+OP-0017 segue visível nas estatísticas do notebook.
 
 ### 4. Mediana inclui os próprios valores atípicos
 Escolhi a mediana do cliente **com** todas as operações: é a definição mais simples
