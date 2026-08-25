@@ -38,8 +38,9 @@ python nivel_2/confronto.py                   # comparacao com risco esperado ->
 
 ### Usar um LLM real
 
-Os resultados em `outputs/` foram gerados com **LLM real** rodando 100% local
-via [Ollama](https://ollama.com) (`llama3.2:3b` — camada gratuita, sem chave de API):
+Os resultados em `outputs/` **e a Parte B do notebook** foram gerados com **LLM real**
+rodando 100% local via [Ollama](https://ollama.com) (`llama3.2:3b` — camada
+gratuita, sem chave de API):
 
 ```bash
 ollama pull llama3.2:3b
@@ -60,6 +61,10 @@ em `docs/DECISOES.md`). Respostas anteriores são servidas de `llm_cache/`
 
 ## Resultados principais
 
+- **Nível 1**: notebook executado de ponta a ponta com o LLM local; na Parte B, o
+  prompt aberto (v1) realmente violou o contrato JSON e exigiu retry corretivo,
+  enquanto o contrato explícito (v2) passou de primeira — comparação com tokens
+  e latência reais na tabela final do notebook.
 - **Nível 2**: 322 operações -> 317 válidas (5 IDs duplicados removidos), 7 convertidas
   de USD, 4 dias de fracionamento, 21 valores atípicos.
 - **Top 10** sinalizados processados pelo agente com LLM real (`llama3.2:3b` local):

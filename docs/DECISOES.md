@@ -48,7 +48,10 @@ Groq/Gemini/OpenRouter/**Ollama**) e `offline`, que segue roteiro fixo
 não há chave/modelo disponível e como referência auditável. **Os outputs
 commitados foram gerados com LLM real**: `llama3.2:3b` rodando localmente via
 Ollama (camada gratuita do enunciado, zero custo), com tokens/latência reais em
-`outputs/custos_*.csv`. Limitação honesta: um modelo de 3B produz tipologias mais
+`outputs/custos_*.csv`. O notebook do nível 1 também foi reexecutado com este
+mesmo LLM local: a comparação v1 × v2 da Parte B usa chamadas reais (o prompt
+aberto realmente veio em prosa e exigiu retry; o contrato explícito passou de
+primeira). Limitação honesta: um modelo de 3B produz tipologias mais
 genéricas e red flags menos descritivas que um 70B hospedado — a troca é trivial
 via `.env` (`LLM_MODEL`), e o cache-first permite reaproveitar as respostas já
 pagas ao migrar de provedor.

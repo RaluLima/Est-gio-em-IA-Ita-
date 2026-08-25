@@ -14,28 +14,32 @@ assert de validação no notebook.
 
 ## 2. LLM dentro do produto (pipeline)
 
-O desafio propõe um processo híbrido regras + LLM. Como não havia chave de API
-gratuita disponível no período, adotei uma arquitetura honesta em duas camadas:
+O desafio propõe um processo híbrido regras + LLM. Sem chave de API gratuita no
+início, construí primeiro backends offline honestos; em seguida instalei um LLM
+real 100% local ([Ollama](https://ollama.com) + `llama3.2:3b`, camada gratuita
+do enunciado) e **reexecutei os dois níveis com chamadas reais** — os caches e
+outputs commitados são desta execução final:
 
-### Nível 1 — pareceres pré-gerados em cache
-- O código chama `llm_client.chamar_llm()` exatamente como chamaria um provedor real;
-- As entradas de `llm_cache/*.json` contêm prompt completo + resposta, no MESMO
-  formato de retorno de API (incluindo campos `usage`), marcadas com
-  `"origem": "pre_gerado_offline"`;
-- As respostas foram redigidas pelo assistente de IA seguindo o contrato JSON
-  (`ParecerLLM`) e revisadas por mim contra os fatos calculados em pandas;
-- Inclui deliberadamente um caso de falha (`nivel1_cli_a_1_v1.json`: resposta em
-  prosa que viola o contrato) para demonstrar o retry corretivo funcionando.
+### Nível 1 — Parte B do notebook com LLM real
+- O notebook chama `chamar_llm()` contra o Ollama local; as entradas de
+  `llm_cache/nivel1_*.json` têm `"origem": "api"` com tokens/latência reais;
+- A falha estrutural demonstrada é genuína: o prompt v1 (pergunta aberta) fez o
+  modelo responder em prosa livre, violando o contrato JSON — o retry corretivo
+  converteu a resposta em um `ParecerLLM` válido; o prompt v2 (contrato
+  explícito) entregou JSON válido de primeira;
+- A comparação v1 × v2 na tabela final usa as métricas reais dessas chamadas
+  (tokens e latência medidas pelo SDK);
+- Histórico: antes do LLM local existir neste projeto, essas respostas eram
+  pré-geradas offline e revisadas por mim contra os fatos calculados em pandas —
+  o design cache-first manteve o código idêntico na troca.
 
-### Nível 2 — backend offline determinístico
-- O agente mantém o loop decidir→agir→observar idêntico ao modo API, mas as
-  decisões vêm de uma política fixa e documentada (`docs/DECISOES.md`, item 8),
-  não de invenção livre;
-- Métricas de custo/latência saem com tokens nulos e `origem=offline_policy`,
-  deixando claro nos outputs (`outputs/custos_resumo.csv`) que nenhuma chamada
-  real foi feita;
-- A integração real está implementada (`nivel_2/llm_client.py`, SDK OpenAI-
-  compatível com Groq/Gemini/OpenRouter/Ollama): basta preencher `.env`.
+### Nível 2 — agente com LLM real, backend offline como fallback
+- Os 10 clientes sinalizados foram processados pelo agente com chamadas reais ao
+  Ollama (~11,7 mil tokens; métricas completas em `outputs/custos_resumo.csv`);
+- O backend `offline` permanece disponível: mesmo loop decidir→agir→observar,
+  com política determinística documentada (`docs/DECISOES.md`, item 8);
+- Integração via SDK OpenAI-compatível (`nivel_2/llm_client.py`):
+  Groq/Gemini/OpenRouter/Ollama — basta trocar `.env`.
 
 ## 3. Salvaguardas
 

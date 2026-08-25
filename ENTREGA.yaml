@@ -21,11 +21,11 @@ nivel_1:
   saida_estruturada:
     status: completo
     onde: "nivel_1/nivel_1.ipynb, código 8–11"
-    nota: "ParecerLLM (pydantic); resposta v1 malformada -> falha detectada -> retry corretivo -> parse OK"
+    nota: "ParecerLLM (pydantic); com o LLM real o prompt v1 veio em prosa -> falha detectada -> retry corretivo -> parse OK"
   comparacao_prompts:
     status: completo
     onde: "nivel_1/nivel_1.ipynb, código 9, 12 e 14"
-    nota: "v1 pergunta aberta vs v2 fatos estruturados + tabela comparativa de resultado/tokens"
+    nota: "v1 pergunta aberta vs v2 fatos estruturados + tabela comparativa com tokens/latência reais do llama3.2:3b"
 
 nivel_2:
   regras_em_escala:
@@ -55,6 +55,6 @@ nivel_3:
   plano: "docs/DECISOES.md#12-plano-do-nível-3-trilha-c"
 
 observacoes:
-  - "Outputs do nível 2 gerados com LLM real rodando 100% local via Ollama (llama3.2:3b) — sem custo e sem chave; o backend offline determinístico permanece disponível como fallback (DECISOES.md #8)."
+  - "Outputs dos DOIS níveis gerados com LLM real rodando 100% local via Ollama (llama3.2:3b) — sem custo e sem chave; o backend offline determinístico permanece disponível como fallback (DECISOES.md #8)."
   - "Notebook commitado JÁ EXECUTADO; resultados do nível 2 salvos em outputs/ conforme exigência."
-  - "Cache LLM em llm_cache/: nível 1 (v1 em prosa -> retry -> v2 JSON válido) e as 20 respostas do lote nível 2."
+  - "Cache LLM em llm_cache/: nível 1 (v1 em prosa -> retry -> v2 JSON válido, origem api com tokens reais) e as 20 respostas do lote nível 2."
