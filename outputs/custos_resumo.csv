@@ -1,2 +1,3 @@
 ﻿origem,chamadas,tokens_prompt_total,tokens_resposta_total,latencia_media_ms,latencia_max_ms,latencia_total_ms
-offline_policy,30,0,0,0.0,0,0
+api,18,10567,1555,3293.3,5380,59279
+cache[api],2,1123,163,9.5,11,19

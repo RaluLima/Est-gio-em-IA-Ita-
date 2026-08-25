@@ -1,8 +1,8 @@
 candidato: "Ralu Lima"
 data_entrega: "2026-08-25"
 repo_url: "https://github.com/RaluLima/Est-gio-em-IA-Ita-"
-modelo_usado: "llama-3.3-70b-versatile (integração Groq pronta); execuções commitadas usam o backend offline pré-gerado"
-provedor: "outro — offline pré-gerado; integração implementada p/ groq | gemini | openrouter | ollama (via .env)"
+modelo_usado: "llama3.2:3b via Ollama local (camada gratuita, sem chave); backend offline determinístico mantido como fallback"
+provedor: "ollama (integrações também prontas p/ groq | gemini | openrouter)"
 horas_dedicadas: 10
 
 nivel_1:
@@ -43,7 +43,7 @@ nivel_2:
   lote:
     status: completo
     onde: "outputs/lote_pareceres.csv|json + custos_latencia.csv + custos_resumo.csv"
-    nota: "um registro por cliente com parecer estruturado; custo/latência por chamada analisados com pandas"
+    nota: "um registro por cliente com parecer estruturado; gerado com LLM real (llama3.2:3b/Ollama) — tokens e latência reais, analisados com pandas"
   confronto:
     status: completo
     onde: "outputs/confronto.csv + confronto.md"
@@ -55,6 +55,6 @@ nivel_3:
   plano: "docs/DECISOES.md#12-plano-do-nível-3-trilha-c"
 
 observacoes:
-  - "Sem chave de API gratuita disponível no período: o agente tem dois backends com mesma interface — 'api' (SDK OpenAI-compatível, funciona ao configurar .env) e 'offline' com política determinística documentada em DECISOES.md #8."
+  - "Outputs do nível 2 gerados com LLM real rodando 100% local via Ollama (llama3.2:3b) — sem custo e sem chave; o backend offline determinístico permanece disponível como fallback (DECISOES.md #8)."
   - "Notebook commitado JÁ EXECUTADO; resultados do nível 2 salvos em outputs/ conforme exigência."
-  - "Cache LLM do notebook em llm_cache/ (v1 em prosa -> retry -> v2 JSON válido)."
+  - "Cache LLM em llm_cache/: nível 1 (v1 em prosa -> retry -> v2 JSON válido) e as 20 respostas do lote nível 2."

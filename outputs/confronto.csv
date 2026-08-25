@@ -1,11 +1,11 @@
 ﻿cliente_id,regras_disparadas,qtd_regras,risco_esperado,risco_agente,concordancia,tipologia_suspeita
-CLI-029,fracionamento,1,médio,alto,agente_mais_severo,Fracionamento de valores
-CLI-017,fracionamento,1,médio,alto,agente_mais_severo,Fracionamento de valores
-CLI-002,fracionamento,1,médio,alto,agente_mais_severo,Fracionamento de valores
-CLI-003,fracionamento,1,médio,alto,agente_mais_severo,Fracionamento de valores
-CLI-014,valor_atipico,1,médio,alto,agente_mais_severo,Valores atípicos frente ao perfil do cliente
-CLI-013,valor_atipico,1,médio,alto,agente_mais_severo,Valores atípicos frente ao perfil do cliente
-CLI-028,valor_atipico,1,médio,alto,agente_mais_severo,Valores atípicos frente ao perfil do cliente
-CLI-005,valor_atipico,1,médio,alto,agente_mais_severo,Valores atípicos frente ao perfil do cliente
-CLI-023,valor_atipico,1,médio,alto,agente_mais_severo,Valores atípicos frente ao perfil do cliente
-CLI-001,valor_atipico,1,médio,alto,agente_mais_severo,Valores atípicos frente ao perfil do cliente
+CLI-029,fracionamento,1,médio,alto,agente_mais_severo,Operações sinalizadas pelas regras
+CLI-017,fracionamento,1,médio,alto,agente_mais_severo,Operações sem data
+CLI-002,fracionamento,1,médio,alto,agente_mais_severo,atividade suspeita de lavagem de dinheiro
+CLI-003,fracionamento,1,médio,alto,agente_mais_severo,atividade suspeita
+CLI-014,valor_atipico,1,médio,alto,agente_mais_severo,Atividade suspeita de lavagem de dinheiro
+CLI-013,valor_atipico,1,médio,alto,agente_mais_severo,Operações sem data
+CLI-028,valor_atipico,1,médio,alto,agente_mais_severo,Operações sem data
+CLI-005,valor_atipico,1,médio,alto,agente_mais_severo,Operações sem data
+CLI-023,valor_atipico,1,médio,alto,agente_mais_severo,Lavagem de Dinheiro
+CLI-001,valor_atipico,1,médio,alto,agente_mais_severo,atividade suspeita de lavagem de dinheiro

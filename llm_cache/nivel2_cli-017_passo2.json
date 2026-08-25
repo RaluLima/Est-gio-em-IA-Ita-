@@ -1,0 +1,13 @@
+{
+  "case_key": null,
+  "model": "llama3.2:3b",
+  "system": "Você é um analista de PLD (Prevenção à Lavagem de Dinheiro) de uma fintech.\nSua tarefa é investigar UM cliente sinalizado por regras determinísticas e emitir um parecer.\n\nFerramentas disponíveis (você as aciona devolvendo APENAS um JSON):\n{\"acao\": \"ferramenta\", \"ferramenta\": \"<nome>\", \"argumentos\": {...}}\n- historico_cliente(cliente_id): Resumo agregado do cliente: volume, mediana, período, moedas, operações sinalizadas pelas regras e dias suspeitos.\n- operacoes_do_dia(cliente_id, data): Detalha todas as operações do cliente em um dia específico (argumentos: cliente_id, data 'AAAA-MM-DD'). Útil para examinar concentração diária e contrapartes.\n- perfil_canal(cliente_id): Distribuição de uso dos canais (pix, ted, boleto, cartao, especie) por contagem e volume.\n\nQuando tiver evidências suficientes, responda APENAS:\n{\"acao\": \"parecer_final\", \"nivel_risco\": \"baixo\"|\"médio\"|\"alto\",\n \"tipologia_suspeita\": \"...\", \"red_flags\": [\"...\"], \"justificativa\": \"...\"}\n\nRegras estritas:\n- Responda SOMENTE com um único objeto JSON, sem texto antes ou depois.\n- NUNCA invente números: cite apenas valores presentes nos resultados das ferramentas.\n- Investigue no máximo 3 ferramentas antes do parecer_final.\n- Valores em BRL já consideram conversão de USD pela taxa 5.4.",
+  "user": "[{\"papel\": \"tarefa\", \"texto\": \"Investigue o cliente CLI-017 e emita o parecer.\"}, {\"papel\": \"chamada_ferramenta\", \"ferramenta\": \"historico_cliente\", \"argumentos\": {\"cliente_id\": \"CLI-017\"}}, {\"papel\": \"resultado_ferramenta\", \"ferramenta\": \"historico_cliente\", \"dados\": {\"cliente_id\": \"CLI-017\", \"qtd_operacoes\": 13, \"volume_total_brl\": 121391.37, \"ticket_medio_brl\": 9337.8, \"mediana_brl\": 9593.32, \"primeira_operacao\": \"2026-03-08\", \"ultima_operacao\": \"2026-05-24\", \"moedas_utilizadas\": [\"BRL\"], \"operacoes_sem_data\": 1, \"sinalizacoes\": {\"ops_em_dias_de_fracionamento\": 4, \"dias_com_fracionamento\": [{\"data\": \"2026-03-08\", \"qtd_operacoes\": 4, \"soma_dia_brl\": 64673.88, \"maior_op_brl\": 18761.22}], \"ops_com_valor_atipico\": 0, \"detalhe_ops_atipicas\": []}}}]",
+  "response_text": "{\"acao\": \"parecer_final\", \"nivel_risco\": \"alto\", \"tipologia_suspeita\": \"Operações sem data\", \"red_flags\": [\"1 operacao sem data\"], \"justificativa\": \"O cliente CLI-017 apresenta 1 operação sem data, o que pode indicar uma tentativa de lavagem de dinheiro.\"}",
+  "usage": {
+    "prompt_tokens": 692,
+    "completion_tokens": 77
+  },
+  "latency_ms": null,
+  "origem": "api"
+}

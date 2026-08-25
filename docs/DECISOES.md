@@ -41,14 +41,17 @@ vindo "da cabeça" do modelo — exigência de separação regra/LLM do desafio.
 Chaves legíveis (`nivel2_cli-029_passo1`) facilitam auditoria ("qual prompt gerou
 isto?") ao custo de invalidar cache se o prompt mudar. Para o exercício, rastreabilidade > sofisticação.
 
-### 8. Backend offline com política determinística documentada
-Não havia chave de API gratuita disponível durante o desenvolvimento. Em vez de
-simular respostas falsas de LLM no nível 2, implementei dois backends com a mesma
-interface: `api` (SDK OpenAI-compatível, pronto p/ Groq/Gemini/OpenRouter/Ollama)
-e `offline`, que segue um roteiro fixo (historico → dia crítico/perfil → parecer)
-com política explícita: ALTO se fracionamento, OU atípico ≥10x mediana, OU ≥2
-atípicos no mesmo dia, OU atípico em espécie; senão MÉDIO. Os outputs commitados
-usam o offline e são integralmente reproduzíveis.
+### 8. Backends com mesma interface: `api` (LLM real) e `offline` (fallback determinístico)
+Implementei dois backends intercambiáveis no agente: `api` (SDK OpenAI-compatível:
+Groq/Gemini/OpenRouter/**Ollama**) e `offline`, que segue roteiro fixo
+(historico → dia crítico/perfil → parecer) com política explícita — útil quando
+não há chave/modelo disponível e como referência auditável. **Os outputs
+commitados foram gerados com LLM real**: `llama3.2:3b` rodando localmente via
+Ollama (camada gratuita do enunciado, zero custo), com tokens/latência reais em
+`outputs/custos_*.csv`. Limitação honesta: um modelo de 3B produz tipologias mais
+genéricas e red flags menos descritivas que um 70B hospedado — a troca é trivial
+via `.env` (`LLM_MODEL`), e o cache-first permite reaproveitar as respostas já
+pagas ao migrar de provedor.
 
 ### 9. Confronto com régua minimalista e divergência conservadora
 Mapeei risco esperado por nº de regras distintas (2→alto, 1→médio). Resultado:

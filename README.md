@@ -36,11 +36,17 @@ python nivel_2/executar_lote.py               # top-10 -> outputs/
 python nivel_2/confronto.py                   # comparacao com risco esperado -> outputs/
 ```
 
-### Usar um LLM real (opcional)
+### Usar um LLM real
 
-Sem configuração, o agente usa o backend `offline` (política determinística
-documentada em `docs/DECISOES.md`). Para chamadas reais, copie `.env.example`
-para `.env` e escolha um provedor compatível com o SDK OpenAI:
+Os resultados em `outputs/` foram gerados com **LLM real** rodando 100% local
+via [Ollama](https://ollama.com) (`llama3.2:3b` — camada gratuita, sem chave de API):
+
+```bash
+ollama pull llama3.2:3b
+copy .env.example .env       # já configurado com LLM_PROVIDER=ollama
+```
+
+Alternativamente, provedores compatíveis com o SDK OpenAI:
 
 ```env
 LLM_PROVIDER=groq            # groq | gemini | openrouter | ollama
@@ -48,15 +54,18 @@ LLM_MODEL=llama-3.3-70b-versatile
 GROQ_API_KEY=...
 ```
 
-Respostas anteriores são servidas de `llm_cache/` (economia de cota); novas
-perguntas vão para a API e entram no cache automaticamente.
+Sem `.env`, o agente usa o backend `offline` (política determinística documentada
+em `docs/DECISOES.md`). Respostas anteriores são servidas de `llm_cache/`
+(economia de cota); novas perguntas vão para a API e entram no cache automaticamente.
 
 ## Resultados principais
 
 - **Nível 2**: 322 operações -> 317 válidas (5 IDs duplicados removidos), 7 convertidas
   de USD, 4 dias de fracionamento, 21 valores atípicos.
-- **Top 10** sinalizados processados pelo agente: todos classificados **ALTO**, com
-  red flags objetivas citando IDs, datas, valores e razão vs mediana.
+- **Top 10** sinalizados processados pelo agente com LLM real (`llama3.2:3b` local):
+  todos classificados **ALTO**, com red flags citando datas, valores e padrões;
+  20 chamadas à API (~11,7 mil tokens), latência média 3,3 s — métricas completas
+  em `outputs/custos_*.csv`.
 - **Confronto**: nenhuma divergência na direção perigosa (agente nunca menos severo
   que a régua minimalista); análise completa em `outputs/confronto.md`.
 

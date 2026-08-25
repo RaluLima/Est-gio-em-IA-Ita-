@@ -1,373 +1,312 @@
 [
   {
     "cliente_id": "CLI-029",
-    "backend": "offline",
-    "passos": 3,
+    "backend": "api",
+    "passos": 2,
     "parecer": {
       "nivel_risco": "alto",
-      "tipologia_suspeita": "Fracionamento de valores",
+      "tipologia_suspeita": "Operações sinalizadas pelas regras",
       "red_flags": [
-        "4 operacoes em 2026-05-26 somando R$ 71297.68, nenhuma isolada >= R$ 20.000,00",
-        "Operacoes em multiplas moedas: BRL, USD"
+        "ops_em_dias_de_fracionamento",
+        "dias_com_fracionamento"
       ],
-      "justificativa": "Cliente CLI-029 apresenta 16 operacoes somando R$ 191385.77 (mediana R$ 10337.49). Fracionamento de valores. Evidencias conferem com nivel de risco ALTO conforme politica de triagem."
+      "justificativa": "O cliente CLI-029 apresenta 4 dias com fracionamento de operações, com um dia específico (2026-05-26) com 4 operações e um valor total de R$ 71297,68, além de 4 operações em dias de fracionamento."
     },
     "metricas": [
       {
         "passo": 1,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
+        "origem": "cache[api]",
+        "tokens_prompt": 428,
+        "tokens_resposta": 34,
+        "latencia_ms": 11
       },
       {
         "passo": 2,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
-      },
-      {
-        "passo": 3,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
+        "origem": "cache[api]",
+        "tokens_prompt": 695,
+        "tokens_resposta": 129,
+        "latencia_ms": 8
       }
     ]
   },
   {
     "cliente_id": "CLI-017",
-    "backend": "offline",
-    "passos": 3,
+    "backend": "api",
+    "passos": 2,
     "parecer": {
       "nivel_risco": "alto",
-      "tipologia_suspeita": "Fracionamento de valores",
+      "tipologia_suspeita": "Operações sem data",
       "red_flags": [
-        "4 operacoes em 2026-03-08 somando R$ 64673.88, nenhuma isolada >= R$ 20.000,00"
+        "1 operacao sem data"
       ],
-      "justificativa": "Cliente CLI-017 apresenta 13 operacoes somando R$ 121391.37 (mediana R$ 9593.32). Fracionamento de valores. Evidencias conferem com nivel de risco ALTO conforme politica de triagem."
+      "justificativa": "O cliente CLI-017 apresenta 1 operação sem data, o que pode indicar uma tentativa de lavagem de dinheiro."
     },
     "metricas": [
       {
         "passo": 1,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
+        "origem": "api",
+        "tokens_prompt": 428,
+        "tokens_resposta": 34,
+        "latencia_ms": 4230
       },
       {
         "passo": 2,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
-      },
-      {
-        "passo": 3,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
+        "origem": "api",
+        "tokens_prompt": 692,
+        "tokens_resposta": 77,
+        "latencia_ms": 3088
       }
     ]
   },
   {
     "cliente_id": "CLI-002",
-    "backend": "offline",
-    "passos": 3,
+    "backend": "api",
+    "passos": 2,
     "parecer": {
       "nivel_risco": "alto",
-      "tipologia_suspeita": "Fracionamento de valores",
+      "tipologia_suspeita": "atividade suspeita de lavagem de dinheiro",
       "red_flags": [
-        "4 operacoes em 2026-05-01 somando R$ 64723.09, nenhuma isolada >= R$ 20.000,00"
+        "qtd_operacoes > 10",
+        "volume_total_brl > 100000",
+        "ticket_medio_brl > 5000",
+        "mediana_brl > 5000"
       ],
-      "justificativa": "Cliente CLI-002 apresenta 14 operacoes somando R$ 107965.38 (mediana R$ 5448.60). Fracionamento de valores. Evidencias conferem com nivel de risco ALTO conforme politica de triagem."
+      "justificativa": "O cliente CLI-002 apresenta um alto volume de transações (14 operações) e um volume total de R$ 107.965,38, o que pode indicar atividade suspeita de lavagem de dinheiro."
     },
     "metricas": [
       {
         "passo": 1,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
+        "origem": "api",
+        "tokens_prompt": 428,
+        "tokens_resposta": 34,
+        "latencia_ms": 2450
       },
       {
         "passo": 2,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
-      },
-      {
-        "passo": 3,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
+        "origem": "api",
+        "tokens_prompt": 692,
+        "tokens_resposta": 136,
+        "latencia_ms": 3812
       }
     ]
   },
   {
     "cliente_id": "CLI-003",
-    "backend": "offline",
-    "passos": 3,
+    "backend": "api",
+    "passos": 2,
     "parecer": {
       "nivel_risco": "alto",
-      "tipologia_suspeita": "Fracionamento de valores",
+      "tipologia_suspeita": "atividade suspeita",
       "red_flags": [
-        "4 operacoes em 2026-05-02 somando R$ 50846.72, nenhuma isolada >= R$ 20.000,00"
+        "qtd_operacoes > 10",
+        "soma_dia_brl > 50000",
+        "maior_op_brl > 15000"
       ],
-      "justificativa": "Cliente CLI-003 apresenta 14 operacoes somando R$ 102241.09 (mediana R$ 4090.03). Fracionamento de valores. Evidencias conferem com nivel de risco ALTO conforme politica de triagem."
+      "justificativa": "O cliente CLI-003 apresenta um alto volume de operações (14) e uma mediana de transação elevada (R$ 4090,03), com dias de fracionamento e operações sem data. Além disso, há uma maior operação de R$ 18.631,47 em um dia específico, o que pode indicar atividade suspeita."
     },
     "metricas": [
       {
         "passo": 1,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
+        "origem": "api",
+        "tokens_prompt": 428,
+        "tokens_resposta": 34,
+        "latencia_ms": 2442
       },
       {
         "passo": 2,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
-      },
-      {
-        "passo": 3,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
+        "origem": "api",
+        "tokens_prompt": 692,
+        "tokens_resposta": 157,
+        "latencia_ms": 4068
       }
     ]
   },
   {
     "cliente_id": "CLI-014",
-    "backend": "offline",
-    "passos": 3,
+    "backend": "api",
+    "passos": 2,
     "parecer": {
       "nivel_risco": "alto",
-      "tipologia_suspeita": "Valores atípicos frente ao perfil do cliente",
+      "tipologia_suspeita": "Atividade suspeita de lavagem de dinheiro",
       "red_flags": [
-        "OP-00133 (2026-03-06): R$ 23640.97 via pix [pagamento] = 10.2x a mediana do cliente",
-        "OP-00129 (2026-03-05): R$ 13660.65 via pix [transferencia_recebida] = 5.9x a mediana do cliente",
-        "OP-00315 (2026-03-24): R$ 21064.59 via ted [deposito] = 9.1x a mediana do cliente",
-        "Operacoes em multiplas moedas: BRL, USD"
+        "qtd_operacoes > 10",
+        "volume_total_brl > 80000",
+        "ticket_medio_brl > 7000",
+        "sinalizacoes.ops_com_valor_atipico > 2",
+        "detalhe_ops_atipicas.razao_vs_mediana > 5"
       ],
-      "justificativa": "Cliente CLI-014 apresenta 11 operacoes somando R$ 80629.99 (mediana R$ 2308.41). Valores atípicos frente ao perfil do cliente. Evidencias conferem com nivel de risco ALTO conforme politica de triagem."
+      "justificativa": "O cliente CLI-014 apresenta indicadores de alto risco, com 11 operações em um período curto, volume total superior a R$ 80.629,99, ticket médio superior a R$ 7.330,00, operações sem data, sinalizações de fracionamento e atipicidade em mais de 2 operações, além de detalhes de operações atípicas com razão de valor superior a 5 em relação à médiana."
     },
     "metricas": [
       {
         "passo": 1,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
+        "origem": "api",
+        "tokens_prompt": 428,
+        "tokens_resposta": 34,
+        "latencia_ms": 2520
       },
       {
         "passo": 2,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
-      },
-      {
-        "passo": 3,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
+        "origem": "api",
+        "tokens_prompt": 823,
+        "tokens_resposta": 216,
+        "latencia_ms": 4858
       }
     ]
   },
   {
     "cliente_id": "CLI-013",
-    "backend": "offline",
-    "passos": 3,
+    "backend": "api",
+    "passos": 2,
     "parecer": {
       "nivel_risco": "alto",
-      "tipologia_suspeita": "Valores atípicos frente ao perfil do cliente",
+      "tipologia_suspeita": "Operações sem data",
       "red_flags": [
-        "OP-00310 (2026-03-06): R$ 28487.76 via ted [saque] = 9.1x a mediana do cliente",
-        "OP-00309 (2026-03-06): R$ 26754.23 via ted [deposito] = 8.5x a mediana do cliente",
-        "Multiplos valores atipicos concentrados no(s) dia(s) 2026-03-06"
+        "ops_em_dias_de_fracionamento: 0"
       ],
-      "justificativa": "Cliente CLI-013 apresenta 10 operacoes somando R$ 81730.99 (mediana R$ 3146.22). Valores atípicos frente ao perfil do cliente. Evidencias conferem com nivel de risco ALTO conforme politica de triagem."
+      "justificativa": "O cliente CLI-013 apresenta 0 operações em dias de fracionamento, o que pode indicar uma falta de transparência ou uma estratégia de evasão de controle."
     },
     "metricas": [
       {
         "passo": 1,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
+        "origem": "api",
+        "tokens_prompt": 428,
+        "tokens_resposta": 34,
+        "latencia_ms": 2514
       },
       {
         "passo": 2,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
-      },
-      {
-        "passo": 3,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
+        "origem": "api",
+        "tokens_prompt": 760,
+        "tokens_resposta": 96,
+        "latencia_ms": 3363
       }
     ]
   },
   {
     "cliente_id": "CLI-028",
-    "backend": "offline",
-    "passos": 3,
+    "backend": "api",
+    "passos": 2,
     "parecer": {
       "nivel_risco": "alto",
-      "tipologia_suspeita": "Valores atípicos frente ao perfil do cliente",
+      "tipologia_suspeita": "Operações sem data",
       "red_flags": [
-        "OP-00308 (2026-03-21): R$ 27715.48 via ted [transferencia_enviada] = 6.3x a mediana do cliente",
-        "OP-00307 (2026-03-21): R$ 24875.39 via ted [transferencia_recebida] = 5.6x a mediana do cliente",
-        "Multiplos valores atipicos concentrados no(s) dia(s) 2026-03-21"
+        "ops_em_dias_de_fracionamento: 0"
       ],
-      "justificativa": "Cliente CLI-028 apresenta 12 operacoes somando R$ 88750.80 (mediana R$ 4430.25). Valores atípicos frente ao perfil do cliente. Evidencias conferem com nivel de risco ALTO conforme politica de triagem."
+      "justificativa": "O cliente CLI-028 apresentou 0 operações em dias de fracionamento, o que pode indicar uma tentativa de lavagem de dinheiro."
     },
     "metricas": [
       {
         "passo": 1,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
+        "origem": "api",
+        "tokens_prompt": 428,
+        "tokens_resposta": 34,
+        "latencia_ms": 2511
       },
       {
         "passo": 2,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
-      },
-      {
-        "passo": 3,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
+        "origem": "api",
+        "tokens_prompt": 766,
+        "tokens_resposta": 87,
+        "latencia_ms": 3284
       }
     ]
   },
   {
     "cliente_id": "CLI-005",
-    "backend": "offline",
-    "passos": 3,
+    "backend": "api",
+    "passos": 2,
     "parecer": {
       "nivel_risco": "alto",
-      "tipologia_suspeita": "Valores atípicos frente ao perfil do cliente",
+      "tipologia_suspeita": "Operações sem data",
       "red_flags": [
-        "OP-00049 (2026-04-12): R$ 11988.17 via especie [transferencia_recebida] = 5.6x a mediana do cliente",
-        "OP-00043 (2026-03-14): R$ 30743.97 via cartao [pagamento] = 14.3x a mediana do cliente"
+        "2 operações sem data"
       ],
-      "justificativa": "Cliente CLI-005 apresenta 11 operacoes somando R$ 64742.66 (mediana R$ 2144.18). Valores atípicos frente ao perfil do cliente. Evidencias conferem com nivel de risco ALTO conforme politica de triagem."
+      "justificativa": "O cliente CLI-005 apresenta 2 operações sem data, o que pode indicar uma tentativa de lavagem de dinheiro."
     },
     "metricas": [
       {
         "passo": 1,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
+        "origem": "api",
+        "tokens_prompt": 428,
+        "tokens_resposta": 34,
+        "latencia_ms": 2496
       },
       {
         "passo": 2,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
-      },
-      {
-        "passo": 3,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
+        "origem": "api",
+        "tokens_prompt": 766,
+        "tokens_resposta": 77,
+        "latencia_ms": 3108
       }
     ]
   },
   {
     "cliente_id": "CLI-023",
-    "backend": "offline",
-    "passos": 3,
+    "backend": "api",
+    "passos": 2,
     "parecer": {
       "nivel_risco": "alto",
-      "tipologia_suspeita": "Valores atípicos frente ao perfil do cliente",
+      "tipologia_suspeita": "Lavagem de Dinheiro",
       "red_flags": [
-        "OP-00219 (2026-04-28): R$ 41768.17 via especie [deposito] = 12.9x a mediana do cliente",
-        "OP-00317 (2026-05-01): R$ 65417.17 via ted [transferencia_enviada] = 20.2x a mediana do cliente",
-        "Operacoes em multiplas moedas: BRL, USD"
+        "qtd_operacoes > 10",
+        "volume_total_brl > 100000",
+        "ticket_medio_brl > 10000",
+        "mediana_brl > 3000",
+        "sinalizacoes.ops_com_valor_atipico > 1",
+        "sinalizacoes.detalhe_ops_atipicas",
+        "sinalizacoes.detalhe_ops_atipicas[0].valor_brl > 40000",
+        "sinalizacoes.detalhe_ops_atipicas[1].valor_brl > 60000"
       ],
-      "justificativa": "Cliente CLI-023 apresenta 12 operacoes somando R$ 148535.02 (mediana R$ 3241.16). Valores atípicos frente ao perfil do cliente. Evidencias conferem com nivel de risco ALTO conforme politica de triagem."
+      "justificativa": "O cliente CLI-023 apresenta indicadores de risco alto, com 12 operações em um período curto, volume total superior a R$ 148.535,00, ticket médio superior a R$ 12.377,92 e mediana superior a R$ 3.241,16. Além disso, há operações com valores atípicos e sinalizações de fracionamento em dias."
     },
     "metricas": [
       {
         "passo": 1,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
+        "origem": "api",
+        "tokens_prompt": 428,
+        "tokens_resposta": 34,
+        "latencia_ms": 2504
       },
       {
         "passo": 2,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
-      },
-      {
-        "passo": 3,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
+        "origem": "api",
+        "tokens_prompt": 768,
+        "tokens_resposta": 249,
+        "latencia_ms": 5380
       }
     ]
   },
   {
     "cliente_id": "CLI-001",
-    "backend": "offline",
-    "passos": 3,
+    "backend": "api",
+    "passos": 2,
     "parecer": {
       "nivel_risco": "alto",
-      "tipologia_suspeita": "Valores atípicos frente ao perfil do cliente",
+      "tipologia_suspeita": "atividade suspeita de lavagem de dinheiro",
       "red_flags": [
-        "OP-00008 (2026-03-15): R$ 25110.15 via especie [deposito] = 15.6x a mediana do cliente",
-        "OP-00006 (None): R$ 9490.55 via ted [saque] = 5.9x a mediana do cliente"
+        "qtd_operacoes > 5",
+        "volume_total_brl > 40000",
+        "ticket_medio_brl > 4000",
+        "mediana_brl > 1000",
+        "sinalizacoes.ops_com_valor_atipico > 1"
       ],
-      "justificativa": "Cliente CLI-001 apresenta 10 operacoes somando R$ 47947.81 (mediana R$ 1609.15). Valores atípicos frente ao perfil do cliente. Evidencias conferem com nivel de risco ALTO conforme politica de triagem."
+      "justificativa": "O cliente CLI-001 apresenta indicadores de alto risco, com uma grande quantidade de operações em um curto período, volume elevado e valores atípicos, além de operações sem data e com valor atípico."
     },
     "metricas": [
       {
         "passo": 1,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
+        "origem": "api",
+        "tokens_prompt": 428,
+        "tokens_resposta": 34,
+        "latencia_ms": 2528
       },
       {
         "passo": 2,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
-      },
-      {
-        "passo": 3,
-        "origem": "offline_policy",
-        "tokens_prompt": null,
-        "tokens_resposta": null,
-        "latencia_ms": 0
+        "origem": "api",
+        "tokens_prompt": 756,
+        "tokens_resposta": 154,
+        "latencia_ms": 4123
       }
     ]
   }
