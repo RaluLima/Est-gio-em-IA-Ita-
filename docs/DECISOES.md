@@ -66,6 +66,35 @@ maior eu criaria `src/pld/` compartilhado e testes pytest cobrindo as duas camad
 
 ### 11. O que faria diferente com mais tempo
 - `src/` único + suíte pytest (dedup, conversão, fronteiras das regras);
-- nível 3 trilha C reaproveitando `tools.py` com `DADOS_PATH` novo;
+- nível 3 trilha C (app conversacional) — plano detalhado no item 12;
 - taxa de câmbio histórica e limites configuráveis via YAML;
 - CI (GitHub Actions) rodando os scripts a cada push.
+
+### 12. Plano do Nível 3 (Trilha C — interface conversacional)
+
+**Ferramenta:** Streamlit (`streamlit run nivel_3/app.py`) — menor fricção para um
+protótipo interno em Python puro, sem frontend separado; Chainlit seria a
+alternativa se o foco fosse exclusivamente chat.
+
+**Arquitetura:**
+- Sidebar com os clientes sinalizados (ranking de `regras.py` + pareceres de
+  `outputs/lote_pareceres.json`) e três modos: *explicar caso*, *comparar dois
+  clientes* e *gerar parecer*;
+- Memória da conversa em `st.session_state["historico"]` (lista de mensagens),
+  zerada ao trocar de cliente para não contaminar casos;
+- O chat não fala direto com o LLM: cada turno injeta como contexto apenas fatos
+  já calculados por `tools.py` (`historico_cliente`, `operacoes_do_dia`,
+  `perfil_canal`) e delega ao loop do `agente.py` — backends api/offline
+  reutilizados sem alteração, mantendo a separação cálculo x interpretação;
+- Modo comparação renderiza lado a lado as métricas pandas dos dois clientes +
+  seus pareceres, destacando red flags que só existem em um deles.
+
+**Como eu validaria que funcionou:**
+1. Teste de memória entre turnos: perguntar "qual o canal mais usado?" e depois
+   "nesse canal, qual a maior operação?" — a 2ª resposta precisa usar o contexto
+   do cliente atual;
+2. Trocar de cliente no meio da sessão e confirmar que o histórico zera (sem
+   vazamento entre casos — requisito crítico em PLD);
+3. Asserts de sanidade: todo número citado pelo assistente deve existir na saída
+   de `tools.py` daquele cliente (mesma disciplina do nível 2);
+4. Prints/GIF das sessões commitados em `outputs/`, como exige a trilha.
